@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: py-sqlite:0.0.1
+    env_file: .env
+    restart: unless-stopped
+    tty: true
+    working_dir: /home/tuandc
+    ports:
+      - "8000:8000"
+    networks:
+      - app-networks
+
+
+networks:
+  app-networks:
+    name: app-networks
+    driver: bridge
+
